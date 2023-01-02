@@ -1,4 +1,4 @@
-(ns twitter-api.tweets.validation
+(ns twitter-api.stores.tweets.validation
   (:require [clojure.string :as str]
             [compojure.core :refer :all]
             [clojure.data.json :as json])
@@ -8,7 +8,6 @@
 (def maximum-body-length 140)
 
 (defn validate-tweet
-  "validate if a tweet has all the required data"
   [tweet]
   (and
    (not (empty? tweet))

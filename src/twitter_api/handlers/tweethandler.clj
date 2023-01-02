@@ -1,13 +1,10 @@
-(ns twitter-api.handlers
-  (:require [org.httpkit.server :as server]
-            [compojure.core :refer :all]
-            [compojure.route :as route]
-            [ring.middleware.defaults :refer :all]
-            [clojure.pprint :as pp]
-            [clojure.string :as str]
-            [clojure.data.json :as json]
-            [clojure.tools.logging :as log]
-            [twitter-api.tweets.database :as d])
+(ns twitter-api.handlers.tweethandler
+  (:require
+   [clojure.data.json :as json]
+   [clojure.tools.logging :as log]
+   [compojure.core :refer :all]
+   [ring.middleware.defaults :refer :all]
+   [twitter-api.stores.tweets.database :as d])
   (:gen-class))
 
 (defn post-twitter-handler

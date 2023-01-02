@@ -18,4 +18,3 @@ CREATE TABLE "public"."tweets" (
     "username" varchar NOT NULL,
     PRIMARY KEY ("id")
 );
-
