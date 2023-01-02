@@ -12,3 +12,6 @@ pom.xml.asc
 .hgignore
 .hg/
 .idea
+/.lsp
+/hsperfdata_root
+/.clj-kondo

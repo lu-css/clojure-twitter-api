@@ -5,7 +5,7 @@
 
 (def db
   {:subname "//db:5432/postgres"
-   :host "db"
+   :host "localhost"
    :port "5432"
    :dbname "postgres"
    :subprotocol "postgres"
@@ -13,11 +13,8 @@
    :user "postgres"
    :password "twitter"})
 
-(hugsql/def-db-fns 
-  "twitter_api/db/sql/queries.sql" 
-  {:adapter (next-adapter/hugsql-adapter-next-jdbc)})
+(hugsql/def-db-fns
+  "twitter_api/db/sql/queries.sql")
 
-(hugsql/def-sqlvec-fns 
-  "twitter_api/db/sql/queries.sql"
-  {:adapter (next-adapter/hugsql-adapter-next-jdbc)})
-
+(hugsql/def-sqlvec-fns
+  "twitter_api/db/sql/queries.sql")

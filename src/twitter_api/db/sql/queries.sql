@@ -9,3 +9,8 @@ values ((:id)::uuid , :body, :username, NOW())
 -- :doc Find tweets from a specific username
 select id, body, username from tweets
 where username = :username
+
+-- A :result value of :n below will return affected rows:
+-- :name sql-get-all-tweets :?
+-- :doc Find all tweets.
+select id, body, username from tweets

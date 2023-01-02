@@ -22,18 +22,22 @@
     (log/info tweet-json)
     {:status  (if saved 201 400)
      :headers {"Content-Type" "text/html"}
-     :body    (when (not saved)
-                "error or saving tweet")}))
+     :body    (if saved
+                "Salvo com sucesso" "Erro ao salvar tweet")}))
 
 (defn get-twitter-handler
-  [req]
-  (log/info req)
-  (let
-   [username (-> req
-                 :params
-                 :username)
-    tweets (d/search-tweets-by-username username)]
+  [username]
 
+  (let [tweets (d/search-tweets-by-username username)]
     {:status 200
      :headers {"Content-type" "application/json"}
+     :body (json/write-str tweets)}))
+
+(defn all-tweets-handler
+  [_req]
+
+  (let
+   [tweets (d/get-all-tweets)]
+    {:status 200
+     :headers {"Content-Type" "application/json"}
      :body (json/write-str tweets)}))

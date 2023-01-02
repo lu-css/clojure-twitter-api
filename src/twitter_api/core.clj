@@ -1,24 +1,23 @@
 (ns twitter-api.core
-  (:require [org.httpkit.server :as server]
-            [compojure.core :refer :all]
-            [compojure.route :as route]
-            [ring.middleware.defaults :refer :all]
-            [ring.middleware.json :as mj]
-            [clojure.pprint :as pp]
-            [clojure.string :as str]
-            [clojure.data.json :as json]
-            [clojure.tools.logging :as log]
-            [twitter-api.handlers :refer :all]
-            [twitter-api.tweets.database :as d])
+  (:require
+   [compojure.core :refer :all]
+   [org.httpkit.server :as server]
+   [ring.middleware.defaults :refer :all]
+   [ring.middleware.json :as mj]
+   [twitter-api.handlers :refer :all])
   (:gen-class))
 
 (defroutes app-routes
-  (POST "/tweets" [] (mj/wrap-json-body post-twitter-handler {:keywords? true :bigdecimals? true}))
-  (GET "/tweets" [] get-twitter-handler))
+  (context "/tweets" []
+    (POST "/" [] (mj/wrap-json-body post-twitter-handler {:keywords? true :bigdecimals? true}))
+    (GET "/" [] all-tweets-handler)
+
+    (context "/:user" [user]
+      (GET "/posts" [] (get-twitter-handler user)))))
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
   (let [port 3000]
     (server/run-server  (wrap-defaults #'app-routes api-defaults)  {:port port})
-    (println (str "Running service on port " port))))
+    (println (str "Server started at port " port))))
