@@ -38,3 +38,12 @@
     {:status 200
      :headers {"Content-Type" "application/json"}
      :body (json/write-str tweets)}))
+
+(defn count-all-tweets-handler
+  "Return the number of tweets."
+  [_req]
+
+  (let [tweets (d/count-tweets)]
+    {:status 200
+     :headers {"Content-Type" "application/json"}
+     :body (json/write-str tweets)}))

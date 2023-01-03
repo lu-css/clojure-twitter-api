@@ -9,6 +9,7 @@
 
 (defroutes app-routes
   (context "/tweets" []
+    (GET "/count" [] tweetH/count-all-tweets-handler)
     (POST "/" [] (mj/wrap-json-body tweetH/post-twitter-handler {:keywords? true :bigdecimals? true}))
     (GET "/" [] tweetH/all-tweets-handler)
 
