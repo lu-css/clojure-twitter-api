@@ -4,7 +4,8 @@
    [org.httpkit.server :as server]
    [ring.middleware.defaults :refer [api-defaults, wrap-defaults]]
    [ring.middleware.json :as mj]
-   [twitter-api.handlers.tweethandler :as tweetH])
+   [twitter-api.handlers.tweethandler :as tweetH]
+   [twitter-api.handlers.notfound :as notfound])
   (:gen-class))
 
 (defroutes app-routes
@@ -14,7 +15,8 @@
     (GET "/" [] tweetH/all-tweets-handler)
 
     (context "/:user" [user]
-      (GET "/posts" [] (tweetH/get-twitter-handler user)))))
+      (GET "/posts" [] (tweetH/get-twitter-handler user))))
+  (GET "/*" [] notfound/generic-not-found))
 
 (defn -main
   "I don't do a whole lot ... yet."
