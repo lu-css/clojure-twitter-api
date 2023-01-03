@@ -1,8 +1,8 @@
-(ns twitter-api.stores.tweets.database
+(ns twitter-api.model.tweets.database
   (:require
    [twitter-api.db.db :refer [db]]
    [twitter-api.db.tweetsdb :as tweetsdb]
-   [twitter-api.stores.tweets.validation :as v])
+   [twitter-api.model.tweets.validation :as v])
   (:import
    java.util.UUID)
   (:gen-class))

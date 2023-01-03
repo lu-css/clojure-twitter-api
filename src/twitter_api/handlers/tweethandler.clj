@@ -4,7 +4,7 @@
    [clojure.tools.logging :as log]
    [compojure.core :refer :all]
    [ring.middleware.defaults :refer :all]
-   [twitter-api.stores.tweets.database :as d])
+   [twitter-api.model.tweets.database :as d])
   (:gen-class))
 
 (defn post-twitter-handler

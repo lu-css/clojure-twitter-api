@@ -1,4 +1,4 @@
-(ns twitter-api.stores.tweets.validation
+(ns twitter-api.model.tweets.validation
   (:require [clojure.string :as str]
             [compojure.core :refer :all]
             [clojure.data.json :as json])
